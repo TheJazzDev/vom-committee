@@ -1,8 +1,4 @@
-import {
-  formatCurrency,
-  calculateTotal,
-  calculateExpenseTotal,
-} from './calculations';
+import { formatCurrency, calculateExpenseTotal } from './calculations';
 
 export const handleDownloadExcel = (
   incomeData: IncomeData,
@@ -18,7 +14,6 @@ export const handleDownloadExcel = (
     totalIncomeCollected: number;
     totalActualExpenses: number;
     netPosition: number;
-    childrenShortfall: number;
   }
 ): void => {
   // Create CSV content with formulas structure
@@ -80,7 +75,7 @@ export const handleDownloadExcel = (
   csvContent += `Children Expenses,,${calculateExpenseTotal(
     expenseDetails.childrenHarvest
   )}\n`;
-  csvContent += `Shortfall (from Harvest Committee),,${totals.childrenShortfall}\n\n`;
+  // csvContent += `Shortfall (from Harvest Committee),,${totals.childrenShortfall}\n\n`;
 
   csvContent += 'EXPECTED ACCOUNT BALANCE\n';
   csvContent += `Amount that should be in account/cash,,${formatCurrency(
@@ -120,7 +115,6 @@ export const handleDownloadText = (
     familyHarvestTotal: number;
     childrenHarvestTotal: number;
     dedicationLogisticsTotal: number;
-    childrenShortfall: number;
     totalPlannedBudget: number;
   }
 ): void => {
@@ -219,21 +213,16 @@ Children Income Collected: ${formatCurrency(totals.totalChildrenCollected)}
 
 Children Expenses: ${formatCurrency(totals.childrenHarvestTotal)}
 
-Shortfall: ${formatCurrency(totals.childrenShortfall)}
-(This amount was covered from Harvest Committee funds)
-
 ========================================
 HARVEST COMMITTEE FUNDS UTILIZATION
 ========================================
 
 Total Harvest Committee: ${formatCurrency(totals.harvestCommitteeTotal)}
-  - Children Harvest Shortfall: ${formatCurrency(totals.childrenShortfall)}
   - Family Harvest: ${formatCurrency(totals.familyHarvestTotal)}
   - Dedication Logistics: ${formatCurrency(totals.dedicationLogisticsTotal)}
 
 Remaining: ${formatCurrency(
     totals.harvestCommitteeTotal -
-      totals.childrenShortfall -
       totals.familyHarvestTotal -
       totals.dedicationLogisticsTotal
   )}
@@ -287,9 +276,6 @@ KEY INSIGHTS
 
 3. CHILDREN HARVEST SUCCESS
    - Children raised ${formatCurrency(totals.totalChildrenCollected)}
-   - Shortfall of ${formatCurrency(
-     totals.childrenShortfall
-   )} covered by committee
    - Well-managed event execution
 
 ========================================

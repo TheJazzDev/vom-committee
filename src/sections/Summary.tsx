@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+
 import {
   PieChart,
   Pie,
@@ -13,54 +14,31 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { formatCurrency } from '@/utils/calculations';
+import { incomeData } from '@/constants/incomeData';
+import { expenseDetails } from '@/constants/expensesDetails';
+import { useFinancialCalculations } from '@/hooks/useFinancialCalculations';
+import { usePrintMode } from '@/hooks/usePrintMode';
+import { BalanceCard } from '@/components/BalanceCard';
 
-interface SummaryTabProps {
-  totalIncomeCollected: number;
-  totalActualExpenses: number;
-  netPosition: number;
-  childrenOutstandingTotal: number;
-  totalChildrenCollected: number;
-  childrenHarvestTotal: number;
-  childrenShortfall: number;
-  harvestCommitteeTotal: number;
-  adultContributionsTotal: number;
-  childrenChairPersonsTotal: number;
-  childrenMembersTotal: number;
-  childrenHarvestDayTotal: number;
-  familyHarvestTotal: number;
-  dedicationLogisticsTotal: number;
-  praiseNightTotal: number;
-  dedicationEntertainmentTotal: number;
-  totalPlannedBudget: number;
-  printMode: boolean;
-}
+export const Summary = () => {
+  const { printMode } = usePrintMode();
 
-export const SummaryTab: React.FC<SummaryTabProps> = ({
-  totalIncomeCollected,
-  totalActualExpenses,
-  netPosition,
-  childrenOutstandingTotal,
-  totalChildrenCollected,
-  childrenHarvestTotal,
-  childrenShortfall,
-  harvestCommitteeTotal,
-  adultContributionsTotal,
-  childrenChairPersonsTotal,
-  childrenMembersTotal,
-  childrenHarvestDayTotal,
-  familyHarvestTotal,
-  dedicationLogisticsTotal,
-  praiseNightTotal,
-  dedicationEntertainmentTotal,
-  totalPlannedBudget,
-  printMode,
-}) => {
-  //   type IncomeCategoryData = {
-  //     name: string;
-  //     value: number;
-  //     color: string;
-  //     [key: string]: string | number;
-  //   };
+  const {
+    totalIncomeCollected,
+    sponsorsTotal,
+    totalActualExpenses,
+    netPosition,
+    childrenOutstandingTotal,
+    totalChildrenCollected,
+    childrenHarvestTotal,
+    harvestCommitteeTotal,
+    adultContributionsTotal,
+    familyHarvestTotal,
+    dedicationLogisticsTotal,
+    praiseNightTotal,
+    dedicationEntertainmentTotal,
+    totalPlannedBudget,
+  } = useFinancialCalculations(incomeData, expenseDetails);
 
   const incomeByCategory: ChartDataItem[] = [
     {
@@ -108,6 +86,28 @@ export const SummaryTab: React.FC<SummaryTabProps> = ({
 
   return (
     <div className='space-y-6'>
+      <div className='mb-8'>
+        <h1
+          className={`text-3xl md:text-4xl font-bold mb-3 ${
+            printMode ? 'text-black' : 'text-gray-900'
+          }`}>
+          Financial Summary Overview
+        </h1>
+        <p className={`text-lg ${printMode ? 'text-black' : 'text-gray-600'}`}>
+          Comprehensive snapshot of the VOM Harvest Committee 2025 financial
+          performance, including total income collected, expenses incurred, and
+          current financial position.
+        </p>
+      </div>
+
+      <BalanceCard
+        netPosition={netPosition}
+        totalIncomeCollected={totalChildrenCollected}
+        totalActualExpenses={totalActualExpenses}
+        childrenOutstandingTotal={childrenOutstandingTotal}
+        printMode={printMode}
+      />
+
       {/* Key Metrics */}
       <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
         <div
@@ -195,74 +195,6 @@ export const SummaryTab: React.FC<SummaryTabProps> = ({
         </div>
       </div>
 
-      {/* Children Harvest Analysis Alert */}
-      <div
-        className={`${
-          printMode
-            ? 'bg-white border-l-4 border-black'
-            : 'bg-orange-50 border-l-4 border-orange-500'
-        } p-6 rounded-lg`}>
-        <h3
-          className={`text-lg font-bold mb-3 ${
-            printMode ? 'text-black' : 'text-orange-900'
-          }`}>
-          Children Harvest Fund Analysis
-        </h3>
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-          <div>
-            <p
-              className={`text-sm mb-1 ${
-                printMode ? 'text-black' : 'text-orange-700'
-              }`}>
-              Children Income
-            </p>
-            <p
-              className={`text-2xl font-bold ${
-                printMode ? 'text-black' : 'text-orange-900'
-              }`}>
-              {formatCurrency(totalChildrenCollected)}
-            </p>
-          </div>
-          <div>
-            <p
-              className={`text-sm mb-1 ${
-                printMode ? 'text-black' : 'text-orange-700'
-              }`}>
-              Children Expenses
-            </p>
-            <p
-              className={`text-2xl font-bold ${
-                printMode ? 'text-black' : 'text-orange-900'
-              }`}>
-              {formatCurrency(childrenHarvestTotal)}
-            </p>
-          </div>
-          <div>
-            <p
-              className={`text-sm mb-1 ${
-                printMode ? 'text-black' : 'text-orange-700'
-              }`}>
-              Shortfall (from Committee)
-            </p>
-            <p
-              className={`text-2xl font-bold ${
-                printMode ? 'text-black' : 'text-red-600'
-              }`}>
-              {formatCurrency(childrenShortfall)}
-            </p>
-          </div>
-        </div>
-        <p
-          className={`text-sm mt-3 ${
-            printMode ? 'text-black' : 'text-orange-800'
-          }`}>
-          ℹ️ The children's harvest program cost more than what was collected
-          from children's contributions. The shortfall of{' '}
-          {formatCurrency(childrenShortfall)} was covered by Harvest Committee
-          funds.
-        </p>
-      </div>
-
       {/* Charts */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
         <div
@@ -335,15 +267,21 @@ export const SummaryTab: React.FC<SummaryTabProps> = ({
             }`}>
             Budget Performance
           </h3>
-          <ResponsiveContainer width='100%' height={300}>
+          <ResponsiveContainer width='100%' height={400}>
             <BarChart data={budgetComparison}>
               <CartesianGrid strokeDasharray='3 3' />
-              <XAxis dataKey='name' angle={-45} textAnchor='end' height={100} />
+              <XAxis
+                dataKey='name'
+                angle={-45}
+                textAnchor='end'
+                height={100}
+                fontSize={12}
+              />
               <YAxis
                 tickFormatter={(value) => `${(value / 1000).toFixed(0)}k`}
               />
               <Tooltip formatter={(value) => formatCurrency(value as number)} />
-              <Legend />
+              <Legend fontSize={8} />
               <Bar dataKey='planned' fill='#94a3b8' name='Planned' />
               <Bar dataKey='actual' fill='#3b82f6' name='Actual' />
             </BarChart>
@@ -363,82 +301,68 @@ export const SummaryTab: React.FC<SummaryTabProps> = ({
           Financial Summary
         </h3>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-          <div className='h-full'>
-            <h4
-              className={`font-semibold mb-3 ${
-                printMode ? 'text-black' : 'text-gray-700'
+          <div className='flex flex-col'>
+            <div className='flex-1'>
+              <h4
+                className={`font-semibold mb-3 ${
+                  printMode ? 'text-black' : 'text-gray-700'
+                }`}>
+                Income Breakdown
+              </h4>
+              <div className='space-y-2'>
+                <div
+                  className={`flex justify-between py-2 ${
+                    printMode ? 'border-b border-black' : 'border-b'
+                  }`}>
+                  <span className={printMode ? 'text-black' : 'text-gray-600'}>
+                    Harvest Committee
+                  </span>
+                  <span className='font-semibold'>
+                    {formatCurrency(harvestCommitteeTotal)}
+                  </span>
+                </div>
+                <div
+                  className={`flex justify-between py-2 ${
+                    printMode ? 'border-b border-black' : 'border-b'
+                  }`}>
+                  <span className={printMode ? 'text-black' : 'text-gray-600'}>
+                    Children Harvest
+                  </span>
+                  <span className='font-semibold'>
+                    {formatCurrency(totalChildrenCollected)}
+                  </span>
+                </div>
+                <div
+                  className={`flex justify-between py-2 ${
+                    printMode ? 'border-b border-black' : 'border-b'
+                  }`}>
+                  <span className={printMode ? 'text-black' : 'text-gray-600'}>
+                    Adult Harvest Members
+                  </span>
+                  <span className='font-semibold'>
+                    {formatCurrency(adultContributionsTotal)}
+                  </span>
+                </div>
+                <div className={`flex justify-between pt-2`}>
+                  <span className={printMode ? 'text-black' : 'text-gray-600'}>
+                    Sponsors
+                  </span>
+                  <span className='font-semibold'>
+                    {formatCurrency(sponsorsTotal)}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className={`flex justify-between py-2 font-bold mt-12 ${
+                printMode ? 'border-t border-black' : 'border-t'
               }`}>
-              Income Breakdown
-            </h4>
-            <div className='space-y-2'>
-              <div
-                className={`flex justify-between py-2 ${
-                  printMode ? 'border-b border-black' : 'border-b'
-                }`}>
-                <span className={printMode ? 'text-black' : 'text-gray-600'}>
-                  Harvest Committee
-                </span>
-                <span className='font-semibold'>
-                  {formatCurrency(harvestCommitteeTotal)}
-                </span>
-              </div>
-              <div
-                className={`flex justify-between py-2 ${
-                  printMode ? 'border-b border-black' : 'border-b'
-                }`}>
-                <span className={printMode ? 'text-black' : 'text-gray-600'}>
-                  Adult Members
-                </span>
-                <span className='font-semibold'>
-                  {formatCurrency(adultContributionsTotal)}
-                </span>
-              </div>
-              <div className={`flex justify-between pt-2`}>
-                <span className={printMode ? 'text-black' : 'text-gray-600'}>
-                  Children (Collected)
-                </span>
-                <span className='font-semibold'>
-                  {formatCurrency(totalChildrenCollected)}
-                </span>
-              </div>
-              <div className={`flex justify-between text-sm`}>
-                <span
-                  className={
-                    printMode ? 'text-black ml-4' : 'text-gray-500 ml-4'
-                  }>
-                  Chairpersons
-                </span>
-                <span>{formatCurrency(childrenChairPersonsTotal)}</span>
-              </div>
-              <div className={`flex justify-between text-sm`}>
-                <span
-                  className={
-                    printMode ? 'text-black ml-4' : 'text-gray-500 ml-4'
-                  }>
-                  Members
-                </span>
-                <span>{formatCurrency(childrenMembersTotal)}</span>
-              </div>
-              <div className={`flex justify-between text-sm`}>
-                <span
-                  className={
-                    printMode ? 'text-black ml-4' : 'text-gray-500 ml-4'
-                  }>
-                  Harvest Day
-                </span>
-                <span>{formatCurrency(childrenHarvestDayTotal)}</span>
-              </div>
-              <div
-                className={`flex justify-between py-2 font-bold mt-12 ${
-                  printMode ? 'border-t border-black' : 'border-t'
-                }`}>
-                <span className={printMode ? 'text-black' : ''}>
-                  Total Income Collected
-                </span>
-                <span className={printMode ? 'text-black' : 'text-green-600'}>
-                  {formatCurrency(totalIncomeCollected)}
-                </span>
-              </div>
+              <span className={printMode ? 'text-black' : ''}>
+                Total Income Collected
+              </span>
+              <span className={printMode ? 'text-black' : 'text-green-600'}>
+                {formatCurrency(totalIncomeCollected)}
+              </span>
             </div>
           </div>
           <div className='flex flex-col'>
@@ -450,17 +374,6 @@ export const SummaryTab: React.FC<SummaryTabProps> = ({
                 Expense Breakdown
               </h4>
               <div className='space-y-2'>
-                <div
-                  className={`flex justify-between py-2 ${
-                    printMode ? 'border-b border-black' : 'border-b'
-                  }`}>
-                  <span className={printMode ? 'text-black' : 'text-gray-600'}>
-                    Family Harvest
-                  </span>
-                  <span className='font-semibold'>
-                    {formatCurrency(familyHarvestTotal)}
-                  </span>
-                </div>
                 <div
                   className={`flex justify-between py-2 ${
                     printMode ? 'border-b border-black' : 'border-b'
@@ -483,20 +396,40 @@ export const SummaryTab: React.FC<SummaryTabProps> = ({
                     {formatCurrency(dedicationLogisticsTotal)}
                   </span>
                 </div>
-                <div className={`flex justify-between py-2`}>
+                <div
+                  className={`flex justify-between py-2 ${
+                    printMode ? 'border-b border-black' : 'border-b'
+                  }`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
-                    Other Categories
+                    Family Harvest
                   </span>
                   <span className='font-semibold'>
-                    {formatCurrency(
-                      praiseNightTotal + dedicationEntertainmentTotal
-                    )}
+                    {formatCurrency(familyHarvestTotal)}
+                  </span>
+                </div>
+                <div
+                  className={`flex justify-between py-2 ${
+                    printMode ? 'border-b border-black' : 'border-b'
+                  }`}>
+                  <span className={printMode ? 'text-black' : 'text-gray-600'}>
+                    Dedication Entertainment
+                  </span>
+                  <span className='font-semibold'>
+                    {formatCurrency(dedicationEntertainmentTotal)}
+                  </span>
+                </div>
+                <div className={`flex justify-between py-2`}>
+                  <span className={printMode ? 'text-black' : 'text-gray-600'}>
+                    Praise Night
+                  </span>
+                  <span className='font-semibold'>
+                    {formatCurrency(praiseNightTotal)}
                   </span>
                 </div>
               </div>
             </div>
             <div
-              className={`flex justify-between py-2 font-bold ${
+              className={`flex justify-between py-2 font-bold mt-12 ${
                 printMode ? 'border-t border-black' : 'border-t'
               }`}>
               <span className={printMode ? 'text-black' : ''}>

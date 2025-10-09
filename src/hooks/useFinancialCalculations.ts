@@ -8,6 +8,7 @@ export const useFinancialCalculations = (
   return useMemo(() => {
     // Income calculations
     const harvestCommitteeTotal = calculateTotal(incomeData.harvestCommittee);
+    const sponsorsTotal = calculateTotal(incomeData.sponsors);
     const adultContributionsTotal = calculateTotal(
       incomeData.adultContributions
     );
@@ -15,17 +16,19 @@ export const useFinancialCalculations = (
       incomeData.childrenChairPersons
     );
     const childrenMembersTotal = calculateTotal(incomeData.childrenMembers);
-    const childrenHarvestDayTotal = incomeData.childrenHarvestDay;
     const childrenOutstandingTotal = calculateTotal(
       incomeData.childrenOutstanding
     );
+    const childrenHarvestDayTotal = incomeData.childrenHarvestDay;
 
     const totalChildrenCollected =
       childrenChairPersonsTotal +
       childrenMembersTotal +
-      childrenHarvestDayTotal;
-    const totalChildrenExpected =
-      totalChildrenCollected + childrenOutstandingTotal;
+      childrenHarvestDayTotal +
+      childrenOutstandingTotal;
+    // const totalChildrenExpected =
+    //   totalChildrenCollected + childrenOutstandingTotal;
+
     const totalIncomeCollected =
       harvestCommitteeTotal + adultContributionsTotal + totalChildrenCollected;
 
@@ -52,7 +55,6 @@ export const useFinancialCalculations = (
       dedicationEntertainmentTotal;
 
     // Analysis calculations
-    const childrenShortfall = childrenHarvestTotal - totalChildrenCollected;
     const netPosition = totalIncomeCollected - totalActualExpenses;
     const totalPlannedBudget = 5000000;
 
@@ -74,13 +76,14 @@ export const useFinancialCalculations = (
     return {
       // Income totals
       harvestCommitteeTotal,
+      sponsorsTotal,
       adultContributionsTotal,
       childrenChairPersonsTotal,
       childrenMembersTotal,
       childrenHarvestDayTotal,
       childrenOutstandingTotal,
       totalChildrenCollected,
-      totalChildrenExpected,
+      // totalChildrenExpected,
       totalIncomeCollected,
 
       // Expense totals
@@ -92,7 +95,6 @@ export const useFinancialCalculations = (
       totalActualExpenses,
 
       // Analysis
-      childrenShortfall,
       netPosition,
       totalPlannedBudget,
       budgetData,

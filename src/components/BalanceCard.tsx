@@ -1,17 +1,19 @@
 import React from 'react';
 import { formatCurrency } from '@/utils/calculations';
 
-interface ExpectedBalanceCardProps {
+interface BalanceCardProps {
   netPosition: number;
   totalIncomeCollected: number;
   totalActualExpenses: number;
+  childrenOutstandingTotal: number;
   printMode: boolean;
 }
 
-export const ExpectedBalanceCard: React.FC<ExpectedBalanceCardProps> = ({
+export const BalanceCard: React.FC<BalanceCardProps> = ({
   netPosition,
   totalIncomeCollected,
   totalActualExpenses,
+  childrenOutstandingTotal,
   printMode,
 }) => {
   return (
@@ -28,7 +30,16 @@ export const ExpectedBalanceCard: React.FC<ExpectedBalanceCardProps> = ({
           <h3 className='text-xl font-bold mb-2'>Expected Account Balance</h3>
           <p className='text-3xl font-bold'>{formatCurrency(netPosition)}</p>
           <p className={`text-sm mt-2 ${printMode ? '' : 'opacity-90'}`}>
-            This amount should be in your account/cash on hand
+            Total amount in committee account
+          </p>
+        </div>
+        <div>
+          <h3 className='text-xl font-bold mb-2'>Current Account Balance</h3>
+          <p className='text-3xl font-bold'>
+            {formatCurrency(netPosition - childrenOutstandingTotal)}
+          </p>
+          <p className={`text-sm mt-2 ${printMode ? '' : 'opacity-90'}`}>
+            This is total account balance - outstanding amount
           </p>
         </div>
         <div className='text-right'>

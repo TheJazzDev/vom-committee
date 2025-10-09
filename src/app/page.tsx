@@ -1,9 +1,9 @@
-import Report from './Report';
+import Index from '@/sections';
 
 export const metadata = {
   title: 'VOM - Committee Report',
 };
 
 export default function Home() {
-  return <Report />;
+  return <Index />;
 }

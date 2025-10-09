@@ -8,10 +8,12 @@ interface ExpenseItem {
   planned: number;
   actual: number;
   note?: string;
+  id?: string
 }
 
 interface IncomeData {
   harvestCommittee: IncomeItem[];
+  sponsors: IncomeItem[];
   adultContributions: IncomeItem[];
   childrenChairPersons: IncomeItem[];
   childrenMembers: IncomeItem[];
