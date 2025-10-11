@@ -140,8 +140,8 @@ export const expenseDetails: ExpenseDetails = {
     },
     {
       item: 'Logistics',
-      planned: 14200,
-      actual: 14200,
+      planned: 17200,
+      actual: 17200,
       note: 'Ile Epo TP = 6,900 | Utensil TP = 1,000 | Ile Epo POS Charges = 1,600 | Extral Nylon = 3,200 | Engin Oil = 3,500',
     },
   ],
@@ -172,7 +172,7 @@ export const expenseDetails: ExpenseDetails = {
       actual: 25000,
     },
     { item: 'ATM Card (Committee Account)', planned: 2500, actual: 2500 },
-    { item: 'CAC Registration', planned: 19000, actual: 19000 },
+    // { item: 'CAC Registration', planned: 19000, actual: 19000 },
     {
       item: 'Correction on Envelop',
       planned: 6000,

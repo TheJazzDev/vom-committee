@@ -24,7 +24,7 @@ export const Navigation = () => {
         <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 py-4'>
 
           {/* Tabs Navigation */}
-          <div className='flex overflow-x-auto scrollbar-hide gap-2 lg:gap-3'>
+          <div className='flex flex-wrap justify-center scrollbar-hide gap-2 lg:gap-3'>
             {tabs.map((tab) => {
               const isActive = pathname === tab.path;
 
@@ -50,7 +50,7 @@ export const Navigation = () => {
           {/* Print Mode Toggle */}
           <button
             onClick={() => setPrintMode(!printMode)}
-            className={`flex items-center justify-center gap-2 px-6 py-2 rounded-lg font-semibold whitespace-nowrap transition-all shadow-md hover:shadow-lg print:hidden ${
+            className={`hidden lg:flex items-center justify-center gap-2 px-6 py-2 rounded-lg font-semibold whitespace-nowrap transition-all shadow-md hover:shadow-lg print:hidden ${
               printMode
                 ? 'bg-black text-white border-2 border-black'
                 : 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700'
