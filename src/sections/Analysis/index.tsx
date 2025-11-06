@@ -3,7 +3,7 @@
 import { useFinancialCalculations } from '@/hooks/useFinancialCalculations';
 import { incomeData } from '@/constants/incomeData';
 import { expenseDetails } from '@/constants/expensesDetails';
-import { usePrintMode } from '@/hooks/usePrintMode';
+import { usePrintMode } from '@/context/PrintModeContext';
 import { AnalysisCharts } from './Chart';
 import { FinancialAnalysisCards } from './FinancialCards';
 import { ChildrenHarvestAnalysis } from '../Harvest/Analysis';

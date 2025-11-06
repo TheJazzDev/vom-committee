@@ -4,7 +4,7 @@ import { formatCurrency } from '@/utils/calculations';
 import { useFinancialCalculations } from '@/hooks/useFinancialCalculations';
 import { incomeData } from '@/constants/incomeData';
 import { expenseDetails } from '@/constants/expensesDetails';
-import { usePrintMode } from '@/hooks/usePrintMode';
+import { usePrintMode } from '@/context/PrintModeContext';
 
 export const Report = () => {
   const { printMode } = usePrintMode();
@@ -24,7 +24,7 @@ export const Report = () => {
 
   return (
     <div>
-      <div className='mb-8'>
+      <div className='mb-8 print:hidden'>
         <h1
           className={`text-3xl md:text-4xl font-bold mb-3 ${
             printMode ? 'text-black' : 'text-gray-900'
@@ -129,10 +129,7 @@ export const Report = () => {
         </div>
       </div>
 
-      <div
-        className={`${
-          printMode ? 'bg-white' : 'bg-white'
-        } rounded-lg shadow-lg p-8`}>
+      <div className='p-8 print:p-4'>
         {/* Header */}
         <div className='text-center mb-8'>
           <h2 className='text-2xl font-bold'>
@@ -361,7 +358,7 @@ export const Report = () => {
               printMode ? 'border-t-2 border-black' : 'border-t-2'
             }`}>
             <h4 className='text-lg font-bold mb-4'>SIGNATURES</h4>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
               <div>
                 <p className='text-sm mb-1 font-semibold'>Committee Chairman</p>
                 <p className='mb-16'>Bro Taiwo Babarinde</p>
@@ -372,7 +369,7 @@ export const Report = () => {
                   <p className='text-xs text-gray-500 mt-1'>Signature & Date</p>
                 </div>
               </div>
-              <div>
+              {/* <div>
                 <p className='text-sm mb-1 font-semibold'>
                   Committee Chairperson
                 </p>
@@ -383,7 +380,7 @@ export const Report = () => {
                   }`}>
                   <p className='text-xs text-gray-500 mt-1'>Signature & Date</p>
                 </div>
-              </div>
+              </div> */}
               <div>
                 <p className='text-sm mb-1 font-semibold'>
                   Committee Treasurer

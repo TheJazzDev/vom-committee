@@ -4,7 +4,7 @@ import { formatCurrency } from '@/utils/calculations';
 import { useFinancialCalculations } from '@/hooks/useFinancialCalculations';
 import { incomeData } from '@/constants/incomeData';
 import { expenseDetails } from '@/constants/expensesDetails';
-import { usePrintMode } from '@/hooks/usePrintMode';
+import { usePrintMode } from '@/context/PrintModeContext';
 
 export const Income = () => {
   const { printMode } = usePrintMode();
@@ -132,7 +132,7 @@ export const Income = () => {
                 className={
                   printMode
                     ? 'bg-white border-t-2 border-black font-bold'
-                    : 'bg-gray-100 font-bold'
+                    : 'bg-gray-100 font-bold text-green-600'
                 }>
                 <td
                   className={`px-4 py-3 text-sm ${
@@ -140,7 +140,7 @@ export const Income = () => {
                   }`}>
                   Subtotal
                 </td>
-                <td className='px-4 py-3 text-sm text-right text-green-600'>
+                <td className='px-4 py-3 text-sm text-right '>
                   {formatCurrency(harvestCommitteeTotal)}
                 </td>
               </tr>
@@ -282,7 +282,7 @@ export const Income = () => {
                 className={
                   printMode
                     ? 'bg-white border-t-2 border-black font-bold'
-                    : 'bg-gray-100 font-bold'
+                    : 'bg-gray-100 font-bold text-green-600'
                 }>
                 <td
                   className={`px-4 py-3 text-sm ${
@@ -290,7 +290,7 @@ export const Income = () => {
                   }`}>
                   Subtotal
                 </td>
-                <td className='px-4 py-3 text-sm text-right text-green-600'>
+                <td className='px-4 py-3 text-sm text-right'>
                   {formatCurrency(adultContributionsTotal)}
                 </td>
               </tr>
@@ -358,7 +358,7 @@ export const Income = () => {
                 className={
                   printMode
                     ? 'bg-white border-t-2 border-black font-bold'
-                    : 'bg-gray-100 font-bold'
+                    : 'bg-gray-100 font-bold text-green-600'
                 }>
                 <td
                   className={`px-4 py-3 text-sm ${
@@ -366,7 +366,7 @@ export const Income = () => {
                   }`}>
                   Subtotal
                 </td>
-                <td className='px-4 py-3 text-sm text-right text-green-600'>
+                <td className='px-4 py-3 text-sm text-right'>
                   {formatCurrency(childrenChairPersonsTotal)}
                 </td>
               </tr>
@@ -434,7 +434,7 @@ export const Income = () => {
                 className={
                   printMode
                     ? 'bg-white border-t-2 border-black font-bold'
-                    : 'bg-gray-100 font-bold'
+                    : 'bg-gray-100 font-bold text-green-600'
                 }>
                 <td
                   className={`px-4 py-3 text-sm ${
@@ -442,7 +442,7 @@ export const Income = () => {
                   }`}>
                   Subtotal
                 </td>
-                <td className='px-4 py-3 text-sm text-right text-green-600'>
+                <td className='px-4 py-3 text-sm text-right'>
                   {formatCurrency(childrenMembersTotal)}
                 </td>
               </tr>
@@ -624,7 +624,7 @@ export const Income = () => {
 
         {/* Total Income Collected */}
         <div
-          className={`pt-6 mt-24 ${
+          className={`pt-6 mt-24 print:mt-0 ${
             printMode
               ? 'border-t-2 border-black'
               : 'border-t-2 border-white border-opacity-50'

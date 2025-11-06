@@ -30,7 +30,7 @@ export const useFinancialCalculations = (
     //   totalChildrenCollected + childrenOutstandingTotal;
 
     const totalIncomeCollected =
-      harvestCommitteeTotal + adultContributionsTotal + totalChildrenCollected;
+      harvestCommitteeTotal + sponsorsTotal + adultContributionsTotal + totalChildrenCollected;
 
     // Expense calculations
     const familyHarvestTotal = calculateExpenseTotal(

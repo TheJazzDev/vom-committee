@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Navigation } from '@/components/Layout';
+import { PrintModeProvider } from '@/context/PrintModeContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,8 +28,12 @@ export default function RootLayout({
     <html lang='en'>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Navigation />
-        <div className='px-4 lg:px-0 max-w-7xl mx-auto my-12'>{children}</div>
+        <PrintModeProvider>
+          <Navigation />
+          <div className='px-4 print:px-0 lg:px-0 max-w-7xl mx-auto my-12 print:my-0'>
+            {children}
+          </div>
+        </PrintModeProvider>
       </body>
     </html>
   );

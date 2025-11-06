@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { usePrintMode } from '@/hooks/usePrintMode';
+import { usePrintMode } from '@/context/PrintModeContext';
 
 const tabs = [
   { id: 'summary', label: 'Summary', path: '/' },
@@ -15,14 +15,13 @@ const tabs = [
 
 export const Navigation = () => {
   const pathname = usePathname();
-  const { printMode, setPrintMode } = usePrintMode();
+  const { printMode, togglePrintMode } = usePrintMode();
 
   return (
-    <div className='sticky top-0 z-50 bg-white shadow-md print:shadow-none'>
+    <div className='sticky top-0 z-50 bg-white shadow-md print:shadow-none print:hidden'>
       <div className='max-w-7xl mx-auto px-4'>
         {/* Mobile & Desktop Layout */}
         <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 py-4'>
-
           {/* Tabs Navigation */}
           <div className='flex flex-wrap justify-center scrollbar-hide gap-2 lg:gap-3'>
             {tabs.map((tab) => {
@@ -49,7 +48,7 @@ export const Navigation = () => {
 
           {/* Print Mode Toggle */}
           <button
-            onClick={() => setPrintMode(!printMode)}
+            onClick={togglePrintMode}
             className={`hidden lg:flex items-center justify-center gap-2 px-6 py-2 rounded-lg font-semibold whitespace-nowrap transition-all shadow-md hover:shadow-lg print:hidden ${
               printMode
                 ? 'bg-black text-white border-2 border-black'
@@ -57,26 +56,33 @@ export const Navigation = () => {
             }`}>
             {printMode ? (
               <>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <svg
+                  className='w-5 h-5'
+                  fill='currentColor'
+                  viewBox='0 0 20 20'>
                   <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
+                    fillRule='evenodd'
+                    d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
+                    clipRule='evenodd'
                   />
                 </svg>
-                <span>B&W Mode</span>
+                <span>Exit Print Mode</span>
               </>
             ) : (
               <>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className='w-5 h-5'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'>
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                     strokeWidth={2}
-                    d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+                    d='M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z'
                   />
                 </svg>
-                <span>Print Mode</span>
+                <span>Enter Print Mode</span>
               </>
             )}
           </button>

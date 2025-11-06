@@ -3,7 +3,7 @@
 import { expenseDetails } from '@/constants/expensesDetails';
 import { incomeData } from '@/constants/incomeData';
 import { useFinancialCalculations } from '@/hooks/useFinancialCalculations';
-import { usePrintMode } from '@/hooks/usePrintMode';
+import { usePrintMode } from '@/context/PrintModeContext';
 import { handleDownloadExcel, handleDownloadText } from '@/utils/downloads';
 
 export const Header = () => {

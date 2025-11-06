@@ -1,7 +1,7 @@
 'use client';
 
 import { formatCurrency } from '@/utils/calculations';
-import { usePrintMode } from '@/hooks/usePrintMode';
+import { usePrintMode } from '@/context/PrintModeContext';
 import { incomeData } from '@/constants/incomeData';
 import { expenseDetails } from '@/constants/expensesDetails';
 

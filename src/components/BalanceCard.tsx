@@ -3,16 +3,12 @@ import { formatCurrency } from '@/utils/calculations';
 
 interface BalanceCardProps {
   netPosition: number;
-  totalIncomeCollected: number;
-  totalActualExpenses: number;
   childrenOutstandingTotal: number;
   printMode: boolean;
 }
 
 export const BalanceCard: React.FC<BalanceCardProps> = ({
   netPosition,
-  totalIncomeCollected,
-  totalActualExpenses,
   childrenOutstandingTotal,
   printMode,
 }) => {
@@ -40,20 +36,6 @@ export const BalanceCard: React.FC<BalanceCardProps> = ({
           </p>
           <p className={`text-sm mt-2 ${printMode ? '' : 'opacity-90'}`}>
             This is total account balance - outstanding amount
-          </p>
-        </div>
-        <div className='text-right'>
-          <p className={`text-sm ${printMode ? '' : 'opacity-90'}`}>
-            Total Income
-          </p>
-          <p className='text-xl font-semibold'>
-            {formatCurrency(totalIncomeCollected)}
-          </p>
-          <p className={`text-sm mt-2 ${printMode ? '' : 'opacity-90'}`}>
-            Total Expenses
-          </p>
-          <p className='text-xl font-semibold'>
-            {formatCurrency(totalActualExpenses)}
           </p>
         </div>
       </div>

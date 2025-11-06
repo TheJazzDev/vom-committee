@@ -4,7 +4,7 @@ import { formatCurrency, calculateExpenseTotal } from '@/utils/calculations';
 import { useFinancialCalculations } from '@/hooks/useFinancialCalculations';
 import { incomeData } from '@/constants/incomeData';
 import { expenseDetails } from '@/constants/expensesDetails';
-import { usePrintMode } from '@/hooks/usePrintMode';
+import { usePrintMode } from '@/context/PrintModeContext';
 import { Fragment } from 'react';
 
 export const Expenses = () => {

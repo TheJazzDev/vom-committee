@@ -17,7 +17,7 @@ import { formatCurrency } from '@/utils/calculations';
 import { incomeData } from '@/constants/incomeData';
 import { expenseDetails } from '@/constants/expensesDetails';
 import { useFinancialCalculations } from '@/hooks/useFinancialCalculations';
-import { usePrintMode } from '@/hooks/usePrintMode';
+import { usePrintMode } from '@/context/PrintModeContext';
 import { BalanceCard } from '@/components/BalanceCard';
 
 export const Summary = () => {

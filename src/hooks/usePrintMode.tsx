@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 interface UsePrintModeReturn {
   printMode: boolean;
   togglePrintMode: () => void;
-  setPrintMode: (value: boolean) => void;
 }
 
 export const usePrintMode = (): UsePrintModeReturn => {
@@ -37,13 +36,8 @@ export const usePrintMode = (): UsePrintModeReturn => {
     setPrintModeState((prev) => !prev);
   };
 
-  const setPrintMode = (value: boolean) => {
-    setPrintModeState(value);
-  };
-
   return {
     printMode,
     togglePrintMode,
-    setPrintMode,
   };
 };
