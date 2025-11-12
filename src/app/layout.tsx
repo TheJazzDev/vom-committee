@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <PrintModeProvider>
           <Navigation />
-          <div className='px-4 print:px-0 lg:px-0 max-w-7xl mx-auto my-12 print:my-0'>
+          <div className='px-4 print:px-2 lg:px-0 max-w-7xl mx-auto my-12'>
             {children}
           </div>
         </PrintModeProvider>

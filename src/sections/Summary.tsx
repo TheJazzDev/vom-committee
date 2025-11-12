@@ -85,15 +85,15 @@ export const Summary = () => {
   ];
 
   return (
-    <div className='space-y-6'>
-      <div className='mb-8'>
+    <div className='space-y-6 print:space-y-2'>
+      <div className='mb-8 print:mb-2'>
         <h1
-          className={`text-3xl md:text-4xl font-bold mb-3 ${
+          className={`text-3xl md:text-4xl print:text-2xl font-bold mb-3 print:mb-1 ${
             printMode ? 'text-black' : 'text-gray-900'
           }`}>
           Financial Summary Overview
         </h1>
-        <p className={`text-lg ${printMode ? 'text-black' : 'text-gray-600'}`}>
+        <p className={`text-lg print:text-sm ${printMode ? 'text-black' : 'text-gray-600'}`}>
           Comprehensive snapshot of the VOM Harvest Committee 2025 financial
           performance, including total income collected, expenses incurred, and
           current financial position.
@@ -109,25 +109,25 @@ export const Summary = () => {
       />
 
       {/* Key Metrics */}
-      <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
+      <div className='grid grid-cols-1 md:grid-cols-4 gap-6 print:gap-2'>
         <div
           className={`${
             printMode
               ? 'bg-white border-2 border-black'
               : 'bg-gradient-to-br from-green-500 to-green-600'
-          } rounded-lg shadow-lg p-6 ${
+          } rounded-lg shadow-lg p-6 print:p-2 ${
             printMode ? 'text-black' : 'text-white'
           }`}>
           <p
-            className={`text-sm mb-1 ${
+            className={`text-sm print:text-xs mb-1 ${
               printMode ? 'font-semibold' : 'opacity-90'
             }`}>
             Total Income
           </p>
-          <p className='text-3xl font-bold'>
+          <p className='text-3xl print:text-lg font-bold'>
             {formatCurrency(totalIncomeCollected)}
           </p>
-          <p className={`text-xs mt-2 ${printMode ? '' : 'opacity-75'}`}>
+          <p className={`text-xs mt-2 print:mt-0 ${printMode ? '' : 'opacity-75'}`}>
             Collected from all sources
           </p>
         </div>
@@ -136,19 +136,19 @@ export const Summary = () => {
             printMode
               ? 'bg-white border-2 border-black'
               : 'bg-gradient-to-br from-red-500 to-red-600'
-          } rounded-lg shadow-lg p-6 ${
+          } rounded-lg shadow-lg p-6 print:p-2 ${
             printMode ? 'text-black' : 'text-white'
           }`}>
           <p
-            className={`text-sm mb-1 ${
+            className={`text-sm print:text-xs mb-1 ${
               printMode ? 'font-semibold' : 'opacity-90'
             }`}>
             Total Expenses
           </p>
-          <p className='text-3xl font-bold'>
+          <p className='text-3xl print:text-lg font-bold'>
             {formatCurrency(totalActualExpenses)}
           </p>
-          <p className={`text-xs mt-2 ${printMode ? '' : 'opacity-75'}`}>
+          <p className={`text-xs mt-2 print:mt-0 ${printMode ? '' : 'opacity-75'}`}>
             {((totalActualExpenses / totalPlannedBudget) * 100).toFixed(1)}% of
             budget
           </p>
@@ -158,17 +158,17 @@ export const Summary = () => {
             printMode
               ? 'bg-white border-2 border-black'
               : 'bg-gradient-to-br from-blue-500 to-blue-600'
-          } rounded-lg shadow-lg p-6 ${
+          } rounded-lg shadow-lg p-6 print:p-2 ${
             printMode ? 'text-black' : 'text-white'
           }`}>
           <p
-            className={`text-sm mb-1 ${
+            className={`text-sm print:text-xs mb-1 ${
               printMode ? 'font-semibold' : 'opacity-90'
             }`}>
             Net Surplus
           </p>
-          <p className='text-3xl font-bold'>{formatCurrency(netPosition)}</p>
-          <p className={`text-xs mt-2 ${printMode ? '' : 'opacity-75'}`}>
+          <p className='text-3xl print:text-lg font-bold'>{formatCurrency(netPosition)}</p>
+          <p className={`text-xs mt-2 print:mt-0 ${printMode ? '' : 'opacity-75'}`}>
             {((netPosition / totalIncomeCollected) * 100).toFixed(1)}% of income
           </p>
         </div>
@@ -177,37 +177,37 @@ export const Summary = () => {
             printMode
               ? 'bg-white border-2 border-black'
               : 'bg-gradient-to-br from-purple-500 to-purple-600'
-          } rounded-lg shadow-lg p-6 ${
+          } rounded-lg shadow-lg p-6 print:p-2 ${
             printMode ? 'text-black' : 'text-white'
           }`}>
           <p
-            className={`text-sm mb-1 ${
+            className={`text-sm print:text-xs mb-1 ${
               printMode ? 'font-semibold' : 'opacity-90'
             }`}>
             Outstanding
           </p>
-          <p className='text-3xl font-bold'>
+          <p className='text-3xl print:text-lg font-bold'>
             {formatCurrency(childrenOutstandingTotal)}
           </p>
-          <p className={`text-xs mt-2 ${printMode ? '' : 'opacity-75'}`}>
+          <p className={`text-xs mt-2 print:mt-0 ${printMode ? '' : 'opacity-75'}`}>
             Pending contributions
           </p>
         </div>
       </div>
 
       {/* Charts */}
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-6 print:gap-2'>
         <div
           className={`${
             printMode ? 'bg-white border border-black' : 'bg-white'
-          } rounded-lg shadow-lg p-6`}>
+          } rounded-lg shadow-lg p-6 print:p-2`}>
           <h3
-            className={`text-lg font-bold mb-4 ${
+            className={`text-lg print:text-base font-bold mb-4 print:mb-1 ${
               printMode ? 'text-black' : 'text-gray-800'
             }`}>
             Income Distribution
           </h3>
-          <ResponsiveContainer width='100%' height={300}>
+          <ResponsiveContainer width='100%' height={printMode ? 200 : 300}>
             <PieChart>
               <Pie
                 data={incomeByCategory}
@@ -229,8 +229,8 @@ export const Summary = () => {
               <Tooltip formatter={(value) => formatCurrency(value as number)} />
             </PieChart>
           </ResponsiveContainer>
-          <div className='mt-4 space-y-2'>
-            <div className='flex justify-between text-sm'>
+          <div className='mt-4 print:mt-1 space-y-2 print:space-y-1'>
+            <div className='flex justify-between text-sm print:text-xs'>
               <span className={printMode ? 'text-black' : 'text-gray-600'}>
                 Harvest Committee
               </span>
@@ -238,7 +238,7 @@ export const Summary = () => {
                 {formatCurrency(harvestCommitteeTotal)}
               </span>
             </div>
-            <div className='flex justify-between text-sm'>
+            <div className='flex justify-between text-sm print:text-xs'>
               <span className={printMode ? 'text-black' : 'text-gray-600'}>
                 Adult Members
               </span>
@@ -246,7 +246,7 @@ export const Summary = () => {
                 {formatCurrency(adultContributionsTotal)}
               </span>
             </div>
-            <div className='flex justify-between text-sm'>
+            <div className='flex justify-between text-sm print:text-xs'>
               <span className={printMode ? 'text-black' : 'text-gray-600'}>
                 Children Total
               </span>
@@ -260,14 +260,14 @@ export const Summary = () => {
         <div
           className={`${
             printMode ? 'bg-white border border-black' : 'bg-white'
-          } rounded-lg shadow-lg p-6`}>
+          } rounded-lg shadow-lg p-6 print:p-2`}>
           <h3
-            className={`text-lg font-bold mb-4 ${
+            className={`text-lg print:text-base font-bold mb-4 print:mb-1 ${
               printMode ? 'text-black' : 'text-gray-800'
             }`}>
             Budget Performance
           </h3>
-          <ResponsiveContainer width='100%' height={400}>
+          <ResponsiveContainer width='100%' height={printMode ? 250 : 400}>
             <BarChart data={budgetComparison}>
               <CartesianGrid strokeDasharray='3 3' />
               <XAxis
@@ -293,25 +293,25 @@ export const Summary = () => {
       <div
         className={`${
           printMode ? 'bg-white border border-black' : 'bg-white'
-        } rounded-lg shadow-lg p-6`}>
+        } rounded-lg shadow-lg p-6 print:p-2`}>
         <h3
-          className={`text-xl font-bold mb-4 ${
+          className={`text-xl print:text-lg font-bold mb-4 print:mb-1 ${
             printMode ? 'text-black' : 'text-gray-800'
           }`}>
           Financial Summary
         </h3>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 print:gap-2'>
           <div className='flex flex-col'>
             <div className='flex-1'>
               <h4
-                className={`font-semibold mb-3 ${
+                className={`font-semibold mb-3 print:mb-1 print:text-sm ${
                   printMode ? 'text-black' : 'text-gray-700'
                 }`}>
                 Income Breakdown
               </h4>
-              <div className='space-y-2'>
+              <div className='space-y-2 print:space-y-1'>
                 <div
-                  className={`flex justify-between py-2 ${
+                  className={`flex justify-between py-2 print:py-1 text-sm print:text-xs ${
                     printMode ? 'border-b border-black' : 'border-b'
                   }`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
@@ -322,7 +322,7 @@ export const Summary = () => {
                   </span>
                 </div>
                 <div
-                  className={`flex justify-between py-2 ${
+                  className={`flex justify-between py-2 print:py-1 text-sm print:text-xs ${
                     printMode ? 'border-b border-black' : 'border-b'
                   }`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
@@ -333,7 +333,7 @@ export const Summary = () => {
                   </span>
                 </div>
                 <div
-                  className={`flex justify-between py-2 ${
+                  className={`flex justify-between py-2 print:py-1 text-sm print:text-xs ${
                     printMode ? 'border-b border-black' : 'border-b'
                   }`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
@@ -343,7 +343,7 @@ export const Summary = () => {
                     {formatCurrency(adultContributionsTotal)}
                   </span>
                 </div>
-                <div className={`flex justify-between pt-2`}>
+                <div className={`flex justify-between pt-2 print:pt-1 text-sm print:text-xs`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
                     Sponsors
                   </span>
@@ -354,7 +354,7 @@ export const Summary = () => {
               </div>
             </div>
             <div
-              className={`flex justify-between py-2 font-bold mt-12 ${
+              className={`flex justify-between py-2 print:py-1 font-bold mt-12 print:mt-2 text-sm print:text-xs ${
                 printMode ? 'border-t border-black' : 'border-t'
               }`}>
               <span className={printMode ? 'text-black' : ''}>
@@ -368,14 +368,14 @@ export const Summary = () => {
           <div className='flex flex-col'>
             <div className='flex-1'>
               <h4
-                className={`font-semibold mb-3 ${
+                className={`font-semibold mb-3 print:mb-1 print:text-sm ${
                   printMode ? 'text-black' : 'text-gray-700'
                 }`}>
                 Expense Breakdown
               </h4>
-              <div className='space-y-2'>
+              <div className='space-y-2 print:space-y-1'>
                 <div
-                  className={`flex justify-between py-2 ${
+                  className={`flex justify-between py-2 print:py-1 text-sm print:text-xs ${
                     printMode ? 'border-b border-black' : 'border-b'
                   }`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
@@ -386,7 +386,7 @@ export const Summary = () => {
                   </span>
                 </div>
                 <div
-                  className={`flex justify-between py-2 ${
+                  className={`flex justify-between py-2 print:py-1 text-sm print:text-xs ${
                     printMode ? 'border-b border-black' : 'border-b'
                   }`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
@@ -397,7 +397,7 @@ export const Summary = () => {
                   </span>
                 </div>
                 <div
-                  className={`flex justify-between py-2 ${
+                  className={`flex justify-between py-2 print:py-1 text-sm print:text-xs ${
                     printMode ? 'border-b border-black' : 'border-b'
                   }`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
@@ -408,7 +408,7 @@ export const Summary = () => {
                   </span>
                 </div>
                 <div
-                  className={`flex justify-between py-2 ${
+                  className={`flex justify-between py-2 print:py-1 text-sm print:text-xs ${
                     printMode ? 'border-b border-black' : 'border-b'
                   }`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
@@ -418,7 +418,7 @@ export const Summary = () => {
                     {formatCurrency(dedicationEntertainmentTotal)}
                   </span>
                 </div>
-                <div className={`flex justify-between py-2`}>
+                <div className={`flex justify-between py-2 print:py-1 text-sm print:text-xs`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
                     Praise Night
                   </span>
@@ -429,7 +429,7 @@ export const Summary = () => {
               </div>
             </div>
             <div
-              className={`flex justify-between py-2 font-bold mt-12 ${
+              className={`flex justify-between py-2 print:py-1 font-bold mt-12 print:mt-2 text-sm print:text-xs ${
                 printMode ? 'border-t border-black' : 'border-t'
               }`}>
               <span className={printMode ? 'text-black' : ''}>

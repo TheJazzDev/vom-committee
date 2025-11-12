@@ -129,32 +129,32 @@ export const Report = () => {
         </div>
       </div>
 
-      <div className='p-8 print:p-4'>
+      <div className='p-8 print:p-2'>
         {/* Header */}
-        <div className='text-center mb-8'>
-          <h2 className='text-2xl font-bold'>
+        <div className='text-center mb-8 print:mb-2'>
+          <h2 className='text-2xl print:text-xl font-bold'>
             CHERUBIM & SERAPHIM MOVEMENT CHURCH
           </h2>
-          <h3 className='text-lg font-semibold mb-2'>VALLEY OF MERCY</h3>
-          <h3 className='text-xl font-semibold mb-1'>
+          <h3 className='text-lg print:text-base font-semibold mb-2 print:mb-1'>VALLEY OF MERCY</h3>
+          <h3 className='text-xl print:text-lg font-semibold mb-1'>
             HARVEST COMMITTEE FINANCIAL REPORT 2025
           </h3>
-          <p className='text-sm'>Period: July - October 2025</p>
-          <p className='text-sm'>
+          <p className='text-sm print:text-xs'>Period: July - October 2025</p>
+          <p className='text-sm print:text-xs'>
             Generated: {new Date().toLocaleDateString()}
           </p>
         </div>
 
-        <div className='space-y-6'>
+        <div className='space-y-6 print:space-y-2'>
           {/* Executive Summary */}
           <div
-            className={`py-4 ${
+            className={`py-4 print:py-1 ${
               printMode
                 ? 'border-t-2 border-b-2 border-black'
                 : 'border-t-2 border-b-2'
             }`}>
-            <h4 className='text-lg font-bold mb-3'>EXECUTIVE SUMMARY</h4>
-            <div className='space-y-2'>
+            <h4 className='text-lg print:text-base font-bold mb-3 print:mb-1'>EXECUTIVE SUMMARY</h4>
+            <div className='space-y-2 print:space-y-1'>
               <div className='flex justify-between'>
                 <span>Total Income Collected:</span>
                 <span className='font-bold'>
@@ -179,7 +179,7 @@ export const Report = () => {
 
           {/* Income Breakdown */}
           <div>
-            <h4 className='text-lg font-bold mb-3'>INCOME BREAKDOWN</h4>
+            <h4 className='text-lg print:text-base font-bold mb-3 print:mb-1'>INCOME BREAKDOWN</h4>
             <table
               className={`w-full ${
                 printMode ? 'border border-black' : 'border'
@@ -250,7 +250,7 @@ export const Report = () => {
 
           {/* Expense Breakdown */}
           <div>
-            <h4 className='text-lg font-bold mb-3'>EXPENSE BREAKDOWN</h4>
+            <h4 className='text-lg print:text-base font-bold mb-3 print:mb-1'>EXPENSE BREAKDOWN</h4>
             <table
               className={`w-full ${
                 printMode ? 'border border-black' : 'border'
@@ -321,18 +321,18 @@ export const Report = () => {
 
           {/* Conclusion */}
           <div
-            className={`pt-4 ${
+            className={`pt-4 print:pt-2 ${
               printMode ? 'border-t-2 border-black' : 'border-t-2'
             }`}>
-            <h4 className='text-lg font-bold mb-3'>CONCLUSION</h4>
-            <p className='mb-4'>
+            <h4 className='text-lg print:text-base font-bold mb-3 print:mb-1'>CONCLUSION</h4>
+            <p className='mb-4 print:mb-1'>
               The committee has successfully managed the harvest activities with
               strong financial discipline. The net surplus of{' '}
               {formatCurrency(netPosition)} represents{' '}
               {((netPosition / totalIncomeCollected) * 100).toFixed(1)}% of
               total income, demonstrating excellent fiscal management.
             </p>
-            <p className='mb-4'>
+            <p className='mb-4 print:mb-1'>
               Budget utilization stood at{' '}
               {((totalActualExpenses / totalPlannedBudget) * 100).toFixed(1)}%
               of the approved ₦5M budget, showing prudent spending and effective
@@ -341,7 +341,7 @@ export const Report = () => {
             <div
               className={`${
                 printMode ? 'border border-black' : 'border'
-              } p-4 mt-6`}>
+              } p-4 print:p-2 mt-6 print:mt-2`}>
               <p className='font-bold text-center'>EXPECTED ACCOUNT BALANCE</p>
               <p className='text-2xl font-bold text-center mt-2'>
                 {formatCurrency(netPosition)}
@@ -354,14 +354,14 @@ export const Report = () => {
 
           {/* Signature Section - UPDATED */}
           <div
-            className={`mt-8 pt-4 mx-auto text-center ${
+            className={`mt-8 print:mt-2 pt-4 print:pt-2 mx-auto text-center ${
               printMode ? 'border-t-2 border-black' : 'border-t-2'
             }`}>
-            <h4 className='text-lg font-bold mb-4'>SIGNATURES</h4>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+            <h4 className='text-lg print:text-base font-bold mb-4 print:mb-2'>SIGNATURES</h4>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-8 print:gap-4'>
               <div>
-                <p className='text-sm mb-1 font-semibold'>Committee Chairman</p>
-                <p className='mb-16'>Bro Taiwo Babarinde</p>
+                <p className='text-sm print:text-xs mb-1 font-semibold'>Committee Chairman</p>
+                <p className='mb-16 print:mb-6'>Bro Taiwo Babarinde</p>
                 <div
                   className={`pt-2 ${
                     printMode ? 'border-t border-black' : 'border-t'
@@ -382,10 +382,10 @@ export const Report = () => {
                 </div>
               </div> */}
               <div>
-                <p className='text-sm mb-1 font-semibold'>
+                <p className='text-sm print:text-xs mb-1 font-semibold'>
                   Committee Treasurer
                 </p>
-                <p className='mb-16'>Sis Oluwakemi Shehu</p>
+                <p className='mb-16 print:mb-6'>Sis Oluwakemi Shehu</p>
                 <div
                   className={`pt-2 ${
                     printMode ? 'border-t border-black' : 'border-t'
@@ -397,7 +397,7 @@ export const Report = () => {
           </div>
 
           {/* Footer - NEW */}
-          <div className={`mt-12 pt-4 text-center text-sm`}>
+          <div className={`mt-12 print:mt-2 pt-4 print:pt-2 text-center text-sm print:text-xs`}>
             <p>
               This report is prepared by <strong>Bro Taiwo Babarinde</strong> -
               <i> Committee Chairman</i>

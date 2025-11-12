@@ -27,3 +27,106 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Chrome, Safari and Opera */
 }
+
+/* Compact print styles */
+@media print {
+  * {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body {
+    margin: 0 !important;
+    padding: 0.25rem !important;
+    font-size: 10pt !important;
+    line-height: 1.2 !important;
+  }
+
+  h1 {
+    font-size: 16pt !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  h2 {
+    font-size: 14pt !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  h3 {
+    font-size: 12pt !important;
+    margin-bottom: 0.15rem !important;
+  }
+
+  h4 {
+    font-size: 11pt !important;
+    margin-bottom: 0.15rem !important;
+  }
+
+  p {
+    margin-bottom: 0.1rem !important;
+    font-size: 10pt !important;
+  }
+
+  .print\:space-compact > * + * {
+    margin-top: 0.25rem !important;
+  }
+
+  table {
+    font-size: 9pt !important;
+  }
+
+  td, th {
+    padding: 0.1rem 0.15rem !important;
+  }
+
+  /* Reduce gap in grids */
+  .grid {
+    gap: 0.25rem !important;
+  }
+
+  /* Compact cards and sections */
+  .rounded-lg, .rounded-xl {
+    padding: 0.25rem !important;
+  }
+
+  /* Reduce spacing utilities */
+  .space-y-6 > * + *, .space-y-4 > * + *, .space-y-2 > * + * {
+    margin-top: 0.15rem !important;
+  }
+
+  .gap-6, .gap-4, .gap-3, .gap-2 {
+    gap: 0.15rem !important;
+  }
+
+  .mb-8, .mb-6, .mb-4, .mb-3, .mb-2 {
+    margin-bottom: 0.15rem !important;
+  }
+
+  .mt-8, .mt-6, .mt-4, .mt-3, .mt-2 {
+    margin-top: 0.15rem !important;
+  }
+
+  .my-12, .my-8, .my-6, .my-4 {
+    margin-top: 0.1rem !important;
+    margin-bottom: 0.1rem !important;
+  }
+
+  .py-6, .py-4, .py-3, .py-2 {
+    padding-top: 0.1rem !important;
+    padding-bottom: 0.1rem !important;
+  }
+
+  .px-6, .px-4, .px-3, .px-2 {
+    padding-left: 0.15rem !important;
+    padding-right: 0.15rem !important;
+  }
+
+  .p-6, .p-4, .p-3, .p-2 {
+    padding: 0.15rem !important;
+  }
+
+  /* Keep essential spacing for readability */
+  .print\:p-4 {
+    padding: 0.3rem !important;
+  }
+}

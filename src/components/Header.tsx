@@ -68,20 +68,20 @@ export const Header = () => {
         printMode
           ? 'bg-white border-b-2 border-black'
           : 'bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-700'
-      } shadow-lg print:shadow-none transition-all duration-300 rounded-xl mb-6`}>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
-        <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6'>
+      } shadow-lg print:shadow-none transition-all duration-300 rounded-xl mb-6 print:mb-2`}>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 print:py-2'>
+        <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 print:gap-2'>
           {/* Title Section */}
           <div className='flex-1'>
-            <div className='flex items-center gap-3 mb-2'>
+            <div className='flex items-center gap-3 print:gap-2 mb-2 print:mb-1'>
               <div
                 className={`${
                   printMode
                     ? 'bg-black text-white'
                     : 'bg-white/20 text-white backdrop-blur-sm'
-                } p-2 rounded-lg`}>
+                } p-2 print:p-1 rounded-lg`}>
                 <svg
-                  className='w-6 h-6'
+                  className='w-6 h-6 print:w-4 print:h-4'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'>
@@ -96,7 +96,7 @@ export const Header = () => {
               <h1
                 className={`${
                   printMode ? 'text-black' : 'text-white'
-                } text-2xl sm:text-3xl font-bold tracking-tight`}>
+                } text-2xl sm:text-3xl print:text-lg font-bold tracking-tight`}>
                 C&S Movt. VOM Harvest Committee 2025
               </h1>
             </div>
@@ -104,16 +104,16 @@ export const Header = () => {
             <p
               className={`${
                 printMode ? 'text-gray-700' : 'text-purple-100'
-              } text-lg font-medium mb-1`}>
+              } text-lg print:text-sm font-medium mb-1`}>
               Comprehensive Financial Report
             </p>
 
             <p
               className={`${
                 printMode ? 'text-gray-600' : 'text-purple-200'
-              } text-sm flex items-center gap-2`}>
+              } text-sm print:text-xs flex items-center gap-2 print:gap-1`}>
               <svg
-                className='w-4 h-4'
+                className='w-4 h-4 print:w-3 print:h-3'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'>
