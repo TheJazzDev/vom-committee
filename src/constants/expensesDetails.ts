@@ -159,7 +159,7 @@ export const expenseDetails: ExpenseDetails = {
   dedicationLogistics: [
     { item: 'Thanksgiving Fund', planned: 200000, actual: 0 },
     { item: 'Cap and Gardle', planned: 350000, actual: 175000 },
-    { item: 'Programs (200 Copies)', planned: 200000, actual: 220000 },
+    { item: 'Programs (200 Copies)', planned: 200000, actual: 300000 },
     { item: 'Instruments (Sound, Mic)', planned: 100000, actual: 0 },
     { item: 'Fuel 110 Liters @ 1,000', planned: 110000, actual: 10000 },
     {
@@ -236,11 +236,16 @@ export const expenseDetails: ExpenseDetails = {
     { item: 'Chair renting', planned: 0, actual: 34000 },
   ],
   dedicationEntertainment: [
-    { item: 'Cow (2)', planned: 1500000, actual: 200000, note: 'Balanced by church' },
+    {
+      item: 'Cow (2)',
+      planned: 1500000,
+      actual: 200000,
+      note: 'Balanced by church',
+    },
     {
       item: 'Rice (3 Bags)',
       planned: 240000,
-      actual: 30000,
+      actual: 88000,
       note: 'Half bag of rice in store',
     },
     {
@@ -248,7 +253,7 @@ export const expenseDetails: ExpenseDetails = {
       planned: 0,
       actual: 0,
       id: 'donations',
-      note: "Donated buy Iya Shehu's daughter",
+      note: "Donated bu Ganiyat Shehu",
     },
     {
       item: 'Bottle Water (50 Packs)',
@@ -265,9 +270,14 @@ export const expenseDetails: ExpenseDetails = {
       note: '20 packs donated by Mummy Oluwunmi',
     },
     { item: 'Small Soft Drinks (17 Packs)', planned: 48000, actual: 0 },
-    { item: 'Pepper, Onions, Fruits and Transport', planned: 200000, actual: 225000 },
-    { item: 'Groundnut Oil (25L x 2)', planned: 120000, actual: 0 },
+    {
+      item: 'Pepper, Onions, Fruits and Transport',
+      planned: 200000,
+      actual: 225000,
+    },
+    { item: 'Groundnut Oil (25L x 1)', planned: 120000, actual: 63000 },
     { item: 'Tin Tomatoes x 4 @ 15,000', planned: 60000, actual: 0 },
+    { item: 'Tin Tomatoes Half Paint', planned: 0, actual: 0, note: 'Donated by Mrs Edunjobi' },
     { item: 'Gas (12kg Cylinders x 3)', planned: 43500, actual: 63200 },
     { item: 'Gas Burner', planned: 5000, actual: 5000 },
     { item: 'Cooking Pot (Large x 3)', planned: 10000, actual: 2500 },
@@ -371,6 +381,5 @@ export const expenseDetails: ExpenseDetails = {
     { item: 'Transport to pack drinks', planned: 0, actual: 3000 },
     { item: 'Capentering 8-11-25', planned: 0, actual: 1000 },
     { item: 'Pure water for children', planned: 0, actual: 2000 },
-
   ],
 };

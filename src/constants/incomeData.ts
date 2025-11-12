@@ -9,7 +9,7 @@ export const incomeData: IncomeData = {
     { name: 'Sis Oluwakemi Shehu', amount: 30000 },
     { name: 'Sis Sarah Adebayo', amount: 22000 },
     { name: 'Evang Bunmi Emmanuel', amount: 21500 },
-    { name: 'Sis Omolola Samaiye', amount: 20000 },
+    { name: 'Sis Omolola Samaiye', amount: 21000 },
     { name: 'Sis Grace Adekunle', amount: 20000 },
     { name: 'Bro Olusola Olaseni', amount: 17000 },
     { name: 'Sis Dayo Olubukonla', amount: 15000 },
@@ -125,9 +125,10 @@ export const incomeData: IncomeData = {
     { name: 'Miss Eniola Amusa', amount: 0 },
   ],
   childrenHarvestDay: 26200,
+  dedicationHarvestDay: 416000,
   childrenOutstanding: [
     { name: "Evang Bunmi Emmanuels's Family", amount: 20000 },
-    { name: "Adeyemo's Family", amount: 8000 },
+    { name: "Adeyemo's Family", amount: 13000 },
     { name: "Ayeni's Family", amount: 2000 },
   ],
 };
