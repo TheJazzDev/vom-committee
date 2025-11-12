@@ -102,8 +102,8 @@ export const Summary = () => {
 
       <BalanceCard
         netPosition={netPosition}
-        totalIncomeCollected={totalChildrenCollected}
-        totalActualExpenses={totalActualExpenses}
+        // totalIncomeCollected={totalChildrenCollected}
+        // totalActualExpenses={totalActualExpenses}
         childrenOutstandingTotal={childrenOutstandingTotal}
         printMode={printMode}
       />
