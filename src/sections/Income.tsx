@@ -16,6 +16,7 @@ export const Income = () => {
     childrenChairPersonsTotal,
     childrenMembersTotal,
     childrenHarvestDayTotal,
+    dedicationHarvestDayTotal,
     childrenOutstandingTotal,
     totalChildrenCollected,
     totalIncomeCollected,
@@ -69,6 +70,12 @@ export const Income = () => {
               printMode ? 'bg-gray-200' : 'bg-yellow-100 text-yellow-700'
             }`}>
             Sponsorships
+          </span>
+          <span
+            className={`px-3 py-1 rounded-full ${
+              printMode ? 'bg-gray-200' : 'bg-orange-100 text-orange-700'
+            }`}>
+            Dedication Harvest
           </span>
         </div>
       </div>
@@ -299,6 +306,82 @@ export const Income = () => {
         </div>
       </div>
 
+      {/* Dedication Harvest Day */}
+      <div
+        className={`${
+          printMode ? 'bg-white border border-black' : 'bg-white'
+        } rounded-lg shadow-lg p-6`}>
+        <h3
+          className={`text-xl font-bold mb-4 ${
+            printMode ? 'text-black' : 'text-gray-800'
+          }`}>
+          Dedication Harvest Day ({incomeData.dedicationHarvestDay.length}{' '}
+          Contributors)
+        </h3>
+        <div className='overflow-x-auto'>
+          <table className='w-full'>
+            <thead
+              className={
+                printMode ? 'bg-white border-b-2 border-black' : 'bg-gray-50'
+              }>
+              <tr>
+                <th
+                  className={`px-4 py-3 text-left text-sm font-semibold ${
+                    printMode
+                      ? 'text-black border-r border-black'
+                      : 'text-gray-700'
+                  }`}>
+                  Name
+                </th>
+                <th
+                  className={`px-4 py-3 text-right text-sm font-semibold ${
+                    printMode ? 'text-black' : 'text-gray-700'
+                  }`}>
+                  Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody className={printMode ? '' : 'divide-y divide-gray-200'}>
+              {incomeData.dedicationHarvestDay.map((item, idx) => (
+                <tr
+                  key={idx}
+                  className={
+                    printMode ? 'border-b border-black' : 'hover:bg-gray-50'
+                  }>
+                  <td
+                    className={`px-4 py-3 text-sm ${
+                      printMode
+                        ? 'text-black border-r border-black'
+                        : 'text-gray-800'
+                    }`}>
+                    {item.name}
+                  </td>
+                  <td className='px-4 py-3 text-sm text-right font-semibold'>
+                    {formatCurrency(item.amount)}
+                  </td>
+                </tr>
+              ))}
+              <tr
+                className={
+                  printMode
+                    ? 'bg-white border-t-2 border-black font-bold'
+                    : 'bg-gray-100 font-bold text-green-600'
+                }>
+                <td
+                  className={`px-4 py-3 text-sm ${
+                    printMode ? 'border-r border-black' : ''
+                  }`}>
+                  Subtotal
+                </td>
+                <td className='px-4 py-3 text-sm text-right'>
+                  {formatCurrency(dedicationHarvestDayTotal)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       {/* Children Harvest - Chairpersons */}
       <div
         className={`${
@@ -513,6 +596,21 @@ export const Income = () => {
                 {formatCurrency(adultContributionsTotal)}
               </span>
             </div>
+            <div className='flex justify-between items-center'>
+              <span
+                className={`text-sm ${
+                  printMode ? 'text-black' : 'text-white opacity-90'
+                }`}>
+                Dedication Harvest Day (
+                {incomeData.dedicationHarvestDay.length} contributors)
+              </span>
+              <span
+                className={`font-bold text-lg ${
+                  printMode ? 'text-black' : 'text-white'
+                }`}>
+                {formatCurrency(dedicationHarvestDayTotal)}
+              </span>
+            </div>
           </div>
 
           {/* Right Column - Children's Income */}
@@ -645,6 +743,7 @@ export const Income = () => {
                 {incomeData.harvestCommittee.length +
                   incomeData.sponsors.length +
                   incomeData.adultContributions.length +
+                  incomeData.dedicationHarvestDay.length +
                   incomeData.childrenChairPersons.length +
                   incomeData.childrenMembers.length}{' '}
                 contributors

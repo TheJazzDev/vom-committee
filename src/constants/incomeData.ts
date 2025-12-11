@@ -15,6 +15,8 @@ export const incomeData: IncomeData = {
     { name: 'Sis Dayo Olubukonla', amount: 15000 },
     { name: 'M/S/A Gidigbi', amount: 15000 },
     { name: 'Sis Bolanle Ajayi', amount: 10000 },
+    { name: 'Sis Williams Orits', amount: 0 },
+    { name: 'Sis Oluwatobi Olawole', amount: 0 },
   ],
   sponsors: [
     { name: 'Pro Kehinde Ogunleti Envelop 4', amount: 54200 },
@@ -52,8 +54,8 @@ export const incomeData: IncomeData = {
     { name: 'Sis Atinuke Adegunle', amount: 15000 },
     { name: 'Sis Sholesi Ajoke', amount: 15000 },
     { name: 'Sis Adedeji', amount: 15000 },
-    { name: 'Sis Ajose', amount: 13000 },
     { name: 'Sis Okegbemi Yemisi', amount: 15000 },
+    { name: 'Sis Ajose', amount: 13000 },
     { name: 'Mrs Ifeoluwa Amusa', amount: 10000 },
     { name: 'Sis Peter Oluwayemisi', amount: 10000 },
     { name: 'Sis Prayer Ifadah', amount: 10000 },
@@ -126,10 +128,19 @@ export const incomeData: IncomeData = {
     { name: 'Miss Eniola Amusa', amount: 0 },
   ],
   childrenHarvestDay: 26200,
-  dedicationHarvestDay: 416000,
+  dedicationHarvestDay: [
+    { name: 'Oluwunmi Guests', amount: 175000 },
+    { name: 'Balle', amount: 20000 },
+    { name: 'Others', amount: 241000 },
+  ],
   childrenOutstanding: [
-    { name: "Evang Bunmi Emmanuels's Family", amount: 20000 },
-    { name: "Adeyemo's Family", amount: 13000 },
     { name: "Ayeni's Family", amount: 2000 },
+  ],
+  loans: [
+    // {
+    //   name: 'Borrowed for Dedication Entertainment',
+    //   amount: 150000,
+    //   note: 'Used for Pepper, Onions, Fruits and Transport',
+    // },
   ],
 };

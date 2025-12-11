@@ -3,13 +3,15 @@ import { formatCurrency } from '@/utils/calculations';
 
 interface BalanceCardProps {
   netPosition: number;
-  childrenOutstandingTotal: number;
+  actualBalance: number;
+  loansTotal: number;
   printMode: boolean;
 }
 
 export const BalanceCard: React.FC<BalanceCardProps> = ({
   netPosition,
-  childrenOutstandingTotal,
+  actualBalance,
+  loansTotal,
   printMode,
 }) => {
   return (
@@ -23,19 +25,28 @@ export const BalanceCard: React.FC<BalanceCardProps> = ({
       } mb-6`}>
       <div className='flex items-center justify-between flex-wrap gap-4'>
         <div>
-          <h3 className='text-xl font-bold mb-2'>Expected Account Balance</h3>
+          <h3 className='text-xl font-bold mb-2'>Net Position</h3>
           <p className='text-3xl font-bold'>{formatCurrency(netPosition)}</p>
           <p className={`text-sm mt-2 ${printMode ? '' : 'opacity-90'}`}>
-            Total amount in committee account
+            Income - Expenses
           </p>
         </div>
         <div>
-          <h3 className='text-xl font-bold mb-2'>Current Account Balance</h3>
-          <p className='text-3xl font-bold'>
-            {formatCurrency(netPosition - childrenOutstandingTotal)}
+          <h3 className='text-xl font-bold mb-2'>Loans Borrowed</h3>
+          <p className='text-3xl font-bold text-red-300'>
+            -{formatCurrency(loansTotal)}
           </p>
           <p className={`text-sm mt-2 ${printMode ? '' : 'opacity-90'}`}>
-            This is total account balance - outstanding amount
+            Money borrowed for expenses
+          </p>
+        </div>
+        <div>
+          <h3 className='text-xl font-bold mb-2'>Actual Balance</h3>
+          <p className='text-3xl font-bold'>
+            {formatCurrency(actualBalance)}
+          </p>
+          <p className={`text-sm mt-2 ${printMode ? '' : 'opacity-90'}`}>
+            Net position minus loans ({formatCurrency(netPosition)} - {formatCurrency(loansTotal)})
           </p>
         </div>
       </div>

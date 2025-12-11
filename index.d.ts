@@ -3,6 +3,12 @@ interface IncomeItem {
   amount: number;
 }
 
+interface LoanItem {
+  name: string;
+  amount: number;
+  note?: string;
+}
+
 interface ExpenseItem {
   item: string;
   planned: number;
@@ -18,7 +24,9 @@ interface IncomeData {
   childrenChairPersons: IncomeItem[];
   childrenMembers: IncomeItem[];
   childrenHarvestDay: number;
+  dedicationHarvestDay: IncomeItem[];
   childrenOutstanding: IncomeItem[];
+  loans: LoanItem[];
 }
 
 interface ExpenseDetails {

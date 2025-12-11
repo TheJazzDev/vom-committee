@@ -20,6 +20,10 @@ export const useFinancialCalculations = (
       incomeData.childrenOutstanding
     );
     const childrenHarvestDayTotal = incomeData.childrenHarvestDay;
+    const dedicationHarvestDayTotal = calculateTotal(
+      incomeData.dedicationHarvestDay
+    );
+    const loansTotal = calculateTotal(incomeData.loans);
 
     const totalChildrenCollected =
       childrenChairPersonsTotal +
@@ -30,7 +34,11 @@ export const useFinancialCalculations = (
     //   totalChildrenCollected + childrenOutstandingTotal;
 
     const totalIncomeCollected =
-      harvestCommitteeTotal + sponsorsTotal + adultContributionsTotal + totalChildrenCollected;
+      harvestCommitteeTotal +
+      sponsorsTotal +
+      adultContributionsTotal +
+      totalChildrenCollected +
+      dedicationHarvestDayTotal;
 
     // Expense calculations
     const familyHarvestTotal = calculateExpenseTotal(
@@ -56,6 +64,7 @@ export const useFinancialCalculations = (
 
     // Analysis calculations
     const netPosition = totalIncomeCollected - totalActualExpenses;
+    const actualBalance = netPosition - loansTotal; // Net position minus loans
     const totalPlannedBudget = 5000000;
 
     const budgetData: BudgetData = {
@@ -81,7 +90,9 @@ export const useFinancialCalculations = (
       childrenChairPersonsTotal,
       childrenMembersTotal,
       childrenHarvestDayTotal,
+      dedicationHarvestDayTotal,
       childrenOutstandingTotal,
+      loansTotal,
       totalChildrenCollected,
       // totalChildrenExpected,
       totalIncomeCollected,
@@ -96,6 +107,7 @@ export const useFinancialCalculations = (
 
       // Analysis
       netPosition,
+      actualBalance,
       totalPlannedBudget,
       budgetData,
     };

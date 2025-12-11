@@ -28,11 +28,14 @@ export const Summary = () => {
     sponsorsTotal,
     totalActualExpenses,
     netPosition,
+    actualBalance,
+    loansTotal,
     childrenOutstandingTotal,
     totalChildrenCollected,
     childrenHarvestTotal,
     harvestCommitteeTotal,
     adultContributionsTotal,
+    dedicationHarvestDayTotal,
     familyHarvestTotal,
     dedicationLogisticsTotal,
     praiseNightTotal,
@@ -47,6 +50,7 @@ export const Summary = () => {
       color: '#10b981',
     },
     { name: 'Adult Members', value: adultContributionsTotal, color: '#3b82f6' },
+    { name: 'Dedication Harvest', value: dedicationHarvestDayTotal, color: '#f97316' },
     { name: 'Children Total', value: totalChildrenCollected, color: '#f59e0b' },
   ];
 
@@ -102,14 +106,14 @@ export const Summary = () => {
 
       <BalanceCard
         netPosition={netPosition}
-        // totalIncomeCollected={totalChildrenCollected}
-        // totalActualExpenses={totalActualExpenses}
+        actualBalance={actualBalance}
+        loansTotal={loansTotal}
         childrenOutstandingTotal={childrenOutstandingTotal}
         printMode={printMode}
       />
 
       {/* Key Metrics */}
-      <div className='grid grid-cols-1 md:grid-cols-4 gap-6 print:gap-2'>
+      <div className='grid grid-cols-1 md:grid-cols-5 gap-6 print:gap-2'>
         <div
           className={`${
             printMode
@@ -176,6 +180,27 @@ export const Summary = () => {
           className={`${
             printMode
               ? 'bg-white border-2 border-black'
+              : 'bg-gradient-to-br from-orange-500 to-orange-600'
+          } rounded-lg shadow-lg p-6 print:p-2 ${
+            printMode ? 'text-black' : 'text-white'
+          }`}>
+          <p
+            className={`text-sm print:text-xs mb-1 ${
+              printMode ? 'font-semibold' : 'opacity-90'
+            }`}>
+            Loans
+          </p>
+          <p className='text-3xl print:text-lg font-bold'>
+            {formatCurrency(loansTotal)}
+          </p>
+          <p className={`text-xs mt-2 print:mt-0 ${printMode ? '' : 'opacity-75'}`}>
+            Borrowed funds
+          </p>
+        </div>
+        <div
+          className={`${
+            printMode
+              ? 'bg-white border-2 border-black'
               : 'bg-gradient-to-br from-purple-500 to-purple-600'
           } rounded-lg shadow-lg p-6 print:p-2 ${
             printMode ? 'text-black' : 'text-white'
@@ -184,13 +209,13 @@ export const Summary = () => {
             className={`text-sm print:text-xs mb-1 ${
               printMode ? 'font-semibold' : 'opacity-90'
             }`}>
-            Outstanding
+            Actual Balance
           </p>
           <p className='text-3xl print:text-lg font-bold'>
-            {formatCurrency(childrenOutstandingTotal)}
+            {formatCurrency(actualBalance)}
           </p>
           <p className={`text-xs mt-2 print:mt-0 ${printMode ? '' : 'opacity-75'}`}>
-            Pending contributions
+            Net position minus loans
           </p>
         </div>
       </div>
@@ -244,6 +269,14 @@ export const Summary = () => {
               </span>
               <span className='font-semibold'>
                 {formatCurrency(adultContributionsTotal)}
+              </span>
+            </div>
+            <div className='flex justify-between text-sm print:text-xs'>
+              <span className={printMode ? 'text-black' : 'text-gray-600'}>
+                Dedication Harvest
+              </span>
+              <span className='font-semibold'>
+                {formatCurrency(dedicationHarvestDayTotal)}
               </span>
             </div>
             <div className='flex justify-between text-sm print:text-xs'>
@@ -343,6 +376,17 @@ export const Summary = () => {
                     {formatCurrency(adultContributionsTotal)}
                   </span>
                 </div>
+                <div
+                  className={`flex justify-between py-2 print:py-1 text-sm print:text-xs ${
+                    printMode ? 'border-b border-black' : 'border-b'
+                  }`}>
+                  <span className={printMode ? 'text-black' : 'text-gray-600'}>
+                    Dedication Harvest Day
+                  </span>
+                  <span className='font-semibold'>
+                    {formatCurrency(dedicationHarvestDayTotal)}
+                  </span>
+                </div>
                 <div className={`flex justify-between pt-2 print:pt-1 text-sm print:text-xs`}>
                   <span className={printMode ? 'text-black' : 'text-gray-600'}>
                     Sponsors
@@ -362,6 +406,28 @@ export const Summary = () => {
               </span>
               <span className={printMode ? 'text-black' : 'text-green-600'}>
                 {formatCurrency(totalIncomeCollected)}
+              </span>
+            </div>
+            <div
+              className={`flex justify-between py-2 print:py-1 text-sm print:text-xs ${
+                printMode ? 'border-b border-black' : 'border-b'
+              }`}>
+              <span className={printMode ? 'text-black text-red-600' : 'text-red-600'}>
+                Less: Loans
+              </span>
+              <span className={printMode ? 'text-black text-red-600' : 'text-red-600 font-semibold'}>
+                ({formatCurrency(loansTotal)})
+              </span>
+            </div>
+            <div
+              className={`flex justify-between py-2 print:py-1 font-bold text-sm print:text-xs ${
+                printMode ? 'border-b-2 border-black' : 'border-b-2'
+              }`}>
+              <span className={printMode ? 'text-black' : 'text-purple-700'}>
+                Actual Balance After Loans
+              </span>
+              <span className={printMode ? 'text-black' : 'text-purple-700'}>
+                {formatCurrency(actualBalance)}
               </span>
             </div>
           </div>
